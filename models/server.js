@@ -9,10 +9,10 @@ class Server{
     // Constructor
     constructor(){
         this.app = express();
-        // El puerto buscalo en process.env.PORT
+        // El puerto donde se va a levantar el servidor en process.env.PORT
         this.port = process.env.PORT;
         //
-        this.usuariosPath = 'api/usuarios';
+        this.usuariosPath = '/api/usuarios';
         //Indicamos al constructor que utilice los Middlewares:
         this.middlewares();
         //Indicamos al constructor que utilice las rutas:
