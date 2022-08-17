@@ -4,6 +4,9 @@ const express = require('express');
 // Importamos cors
 const cors = require('cors');
 
+// Importamos dbConection
+const {dbConection} = require('../database/config')
+
 class Server{
 
     // Constructor
@@ -17,6 +20,8 @@ class Server{
         this.middlewares();
         //Indicamos al constructor que utilice las rutas:
         this.routes();
+        //Indicamos al constructor que utilice el método para conectarse a la base de datos:
+        this.conectarDB();
     }
     //Métodos
     middlewares(){
@@ -30,7 +35,12 @@ class Server{
 
     routes(){
         //Para todo lo que coloquemos en el path 'api/usuarios' utiliza el directorio indicado:
-        this.app.use(this.usuariosPath, require('../routes/usuarios'))
+        this.app.use(this.usuariosPath, require('../routes/usuarios'));
+    }
+
+    //Método para realizar la coneccion a la base de datos
+    async conectarDB(){
+        dbConection();
     }
 
     listen(){
